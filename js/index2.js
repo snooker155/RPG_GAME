@@ -2,39 +2,6 @@
 $(document).ready(function() {
 
 
-
-// var player = {
-
-//    basicattackcooldown:false,
-//    iceboltcooldown:false,
-//    fireboltcooldown:false,
-//    stormboltcooldown:false,
-//    shadowboltcooldown:false,
-//    thornscooldown:false,
-//    bloodstrikecooldown:false,
-//    healcooldown:false,
-//    shieldcooldown:false,
-//    buffmagiccooldown:false,
-//    naturehealcooldown:false,
-//    manarestorecooldown:false,
-
-//    icebuffcooldown: false,
-//    firebuffcooldown: false,
-//    stormbuffcooldown: false,
-//    shadowbuffcooldown: false,
-//    bloodsapcooldown: false,
-//    healwingscooldown: false,
-//    helmetcooldown: false,
-//    attackbuffcooldown:false,
-//    magebuffcooldown: false,
-//    lotuscooldown: false,
-//    magicattackcooldown: false,
-//    defensehealcooldown: false,
-
-//  }
-
-
-
 var mouseX;
 var mouseY;
 $(document).mousemove(function(e) {
@@ -43,315 +10,15 @@ $(document).mousemove(function(e) {
 });
 
 
-
-
-// function playerattack(object){
-// updatespells();
-
-//   var i = 0;
-
-
-//   // function resetcooldown(){
-//   //   player[object.namefunction+"cooldown"] = false;
-//   //   $(object.nameid).removeClass("oncooldown");
-
-//   // }
-
-//   function f() {
-//     if (player[object.namefunction +"cooldown"] === false && currentplayermana >= object.manacost && battle === true){
-//       player[object.namefunction+"cooldown"]=true;
-
-// // 0 means 1 spell use per battle
-//       fattack();
-//       if (object.cooldown !== 0 ){
-//       setTimeout(resetcooldown,object.cooldown,object.namefunction);
-//     }
-//     }
-
-//     function removebuff(){
-//       player[object.buffname]= 0;
-//     }
-
-//     function fattack(){
-
-//     if (object.buffamount != 0 && i === 0){
-//       player[object.buffname] = object.buffamount;
-//       var classname = object.buffname.replace("buff","");
-//       $("#rightinfo").prepend("<p class='"+ classname +"'>"+object.buffname.replace("buff","")+" buffed: "+object.buffamount+"</p>");
-//       setTimeout (removebuff, object.buffduration);
-
-//     }
-
-//     if (object.damage > 0 ){
-//       var critroll = Math.floor(Math.random() * (100 - Critical)) + 1;
-//       var ifcrit = " does ";
-
-//         if (critroll < Critical) {
-//           object.damage = object.damage * 2;
-//           ifcrit = " CRITS for";
-//         }
-//       currentbosshealth = currentbosshealth - object.damage;
-//       $("#rightinfo").prepend("<p>"+ object.nameplayer + ifcrit + ": "+ object.damage + " DMG! </p>");
-//     }
-
-//     if (object.manacost > 0){
-//       currentplayermana = currentplayermana - object.manacost;
-//     }
-
-//     if (object.healthcost > 0){
-//       currentplayerhealth = currentplayerhealth - object.healthcost;
-//     }
-
-//     if (object.manarestore > 0 ){
-//       currentplayermana = currentplayermana + object.manarestore;
-//       $("#rightinfo").prepend("<p>You restore: " + object.manarestore + " Mana!")
-//     }
-
-//     if (object.healthrestore > 0){
-//       currentplayerhealth = currentplayerhealth + object.healthrestore;
-//       $("#rightinfo").prepend("<p>You restore: " + object.healthrestore + " Health!");
-//     }
-
-//       i++;
-//       if( i < object.repeat ){setTimeout(fattack, object.delay );}
-//     }
-//   }
-// if (player[object.namefunction +"cooldown"] === false && currentplayermana >= object.manacost){
-//   $(object.nameid).addClass("oncooldown");
-//   setTimeout(f,object.delay);
-// }
-
-
-// }
-
-var spellTree = [
-  ///// Simple spell ////////
-  {
-    name: 'Simple Ice',
-    icon_class: '-ice-6',
-    combo: [1],
-    damage: 15 ,
-    manacost: 25,
-    type: 'ice',
-  },
-  {
-    name: 'Simple Fire',
-    icon_class: '-fire-3',
-    combo: [2],
-    damage: 20 ,
-    manacost: 30,
-    type: 'fire',
-  },
-  {
-    name: 'Simple Storm',
-    icon_class: '-lightning-2',
-    combo: [3],
-    damage: 10 ,
-    manacost: 10,
-    type: 'storm',
-  },
-  {
-    name: 'Simple Nature',
-    icon_class: '-nature-4',
-    combo: [4],
-    damage: 10 ,
-    manacost: 10,
-    type: 'nature',
-  },
-  {
-    name: 'Simple Nature',
-    icon_class: '-shadow-1',
-    combo: [5],
-    damage: 10 ,
-    manacost: 10,
-    type: 'shadow',
-  },
-  {
-    name: 'Simple Nature',
-    icon_class: '-blood-2',
-    combo: [6],
-    damage: 10 ,
-    manacost: 10,
-    type: 'blood',
-  },
-  {
-    name: 'Simple Attack',
-    icon_class: '-basic',
-    combo: [7],
-    damage: 5,
-    manacost: 0,
-    type: 'physical',
-  },
-  {
-    name: 'Simple Defend',
-    icon_class: '-defend-3',
-    combo: [8],
-    damage: 10 ,
-    manacost: 10,
-    type: 'dodge',
-  },
-
-  ///// Medium spell repeat ////////
-
-  {
-    name: 'Medium Ice',
-    icon_class: '-ice-6',
-    combo: [1,1],
-    damage: 15 ,
-    manacost: 25,
-    type: 'ice',
-  },
-  {
-    name: 'Medium Fire',
-    icon_class: '-fire-3',
-    combo: [2,2],
-    damage: 20 ,
-    manacost: 30,
-    type: 'fire',
-  },
-  {
-    name: 'Medium Storm',
-    icon_class: '-lightning-2',
-    combo: [3,3],
-    damage: 10 ,
-    manacost: 10,
-    type: 'storm',
-  },
-  {
-    name: 'Medium Nature',
-    icon_class: '-nature-1',
-    combo: [4,4],
-    damage: 5,
-    manacost: 0,
-    type: 'nature',
-  },
-  {
-    name: 'Medium Nature',
-    icon_class: '-nature-1',
-    combo: [5,5],
-    damage: 5,
-    manacost: 0,
-    type: 'nature',
-  },
-  {
-    name: 'Medium Nature',
-    icon_class: '-nature-1',
-    combo: [6,6],
-    damage: 5,
-    manacost: 0,
-    type: 'nature',
-  },
-  {
-    name: 'Medium Attack',
-    icon_class: '-basic',
-    combo: [7,7],
-    damage: 5,
-    manacost: 0,
-    type: 'physical',
-  },
-  {
-    name: 'Medium Nature',
-    icon_class: '-nature-1',
-    combo: [8,8],
-    damage: 5,
-    manacost: 0,
-    type: 'nature',
-  },
-
-  ///// Medium spell ice ////////
-  {
-    name: 'Ice Fire',
-    icon_class: '-ice-1',
-    combo: [1,2],
-    damage: 15 ,
-    manacost: 25,
-    type: 'ice',
-  },
-  {
-    name: 'Ice Blast',
-    icon_class: '-ice-4',
-    combo: [1,3],
-    damage: 15 ,
-    manacost: 25,
-    type: 'ice',
-  },
-  {
-    name: 'Ice Prison',
-    icon_class: '-ice-2',
-    combo: [1,4],
-    damage: 15 ,
-    manacost: 25,
-    type: 'ice',
-  },
-  {
-    name: 'Ice Shadow',
-    icon_class: '-support-4',
-    combo: [1,5],
-    damage: 15 ,
-    manacost: 25,
-    type: 'ice',
-  },
-  {
-    name: 'Ice Wall',
-    icon_class: '-ice-5',
-    combo: [1,6],
-    damage: 15 ,
-    manacost: 25,
-    type: 'ice',
-  },
-  {
-    name: 'Ice Sword',
-    icon_class: '-basic',
-    combo: [1,7],
-    damage: 15 ,
-    manacost: 25,
-    type: 'ice',
-  },
-  {
-    name: 'Ice block',
-    icon_class: '-ice-3',
-    combo: [1,8],
-    damage: 15 ,
-    manacost: 25,
-    type: 'ice',
-  },
-
-  ///// Medium spell fire ////////
-
-];
-
-
-var combo = [];
-var targetComboSpell = {};
-var previous_spell = {};
-
-function playerattack (object){
-  if(targetComboSpell.icon_class){
-    $("#infolog").prepend("<p>You cast: " + object.name + "! / Type: "+object.type+" / Damage: "+object.damage+" / Manacost: "+object.manacost);
-    if(combo[0])$("#0_spell").removeClass(combo[0].icon_class);
-    if(combo[1])$("#1_spell").removeClass(combo[1].icon_class);
-    // if(combo[2])$("#2_spell").removeClass(combo[2].icon_class);
-    $("#spell_to_cast").removeClass(targetComboSpell.icon_class);
-    targetComboSpell = {};
-    combo = [];
-    $("#spell_name").text("");
-    $("#spell_type").text("");
-    $("#spell_type").attr("class", "");
-    $("#spell_damage").text("");
-    $("#spell_manacost").text("");
-  // }else{
-  //   $("#infolog").prepend("<p>Cast a spell!</p>");
-  }
+function drawSpellText(spell){
+  $("#spell_name").text("Name: "+spell.name);
+  $("#spell_type").text("Type: "+spell.type);
+  $("#spell_type").addClass(spell.school);
+  $("#spell_damage").text("Damage: "+spell.damage);
+  $("#spell_manacost").text("Manacost: "+spell.manacost);
 }
 
-function reset (){
-  // $("#infolog").prepend("<p>Cancel spell!</p>");
-  if(combo[0])$("#0_spell").removeClass(combo[0].icon_class);
-  if(combo[1])$("#1_spell").removeClass(combo[1].icon_class);
-  // if(combo[2])$("#2_spell").removeClass(combo[2].icon_class);
-  $("#spell_to_cast").removeClass(targetComboSpell.icon_class);
-  targetComboSpell = {};
-  combo = [];
+function resetSpellText(){
   $("#spell_name").text("");
   $("#spell_type").text("");
   $("#spell_type").attr("class", "");
@@ -359,33 +26,142 @@ function reset (){
   $("#spell_manacost").text("");
 }
 
-function put_in_combo (object){
+
+function hpUpdate(player){
+  $("#playerhpbar").css('width', player.hp / player.total_hp * 100 + '%');
+}
+
+function manaUpdate(player){
+  $("#playermanabar").css('width', player.mana / player.total_mana * 100 + '%');
+}
+
+function updateBuffsScreen(player){
+
+}
+
+function updateSummonsScreen(player){
+
+}
+
+
+function Player(){
+
+  this.name - 'player1';
+  this.total_hp = 200;
+  this.hp = 200;
+  this.total_mana = 100;
+  this.mana = 100;
+  this.base_dmg = 5;
+  this.base_resist = 10; // *%
+  this.spells = {};
+  this.buffs = {};
+  this.debuffs = {};
+  this.summons = {};
+  this.target = null;
+  this.combo = [];
+  this.targetComboSpell = {};
+  this.previous_spell = {};
+
+}
+
+window.player = new Player();
+
+hpUpdate(window.player);
+manaUpdate(window.player);
+
+
+
+Player.prototype.castSpell = Player.prototype.castSpell || function(spell){
+
+  var self = this;
+
+  self.target = self;
+
+  if(!spell || !spell.type){
+    
+    $("#spell_status").attr('style', '');
+
+    $("#spell_status").text("Spell not found!").delay(500).fadeOut(1500);
+
+  }else if(self.spells[spell.name] == true){
+
+    $("#spell_status").attr('style', '');
+
+    $("#spell_status").text("Spell on cooldown!").delay(500).fadeOut(1500); 
+
+  }else if(spell.manacost > self.mana){
+
+    $("#spell_status").attr('style', '');
+
+    $("#spell_status").text("Not enough mana!").delay(500).fadeOut(1500); 
+
+  }else{
+
+    switch (spell.type) {
+      case 'damage':
+        spell.makeDamage(self.target);
+        spell.manaCost(self);
+        spell.setCooldown(self);
+        break;
+      case 'heal':
+        spell.makeHeal(self.target);
+        spell.manaCost(self);
+        spell.setCooldown(self);
+        break;
+      case 'buff':
+        spell.setBuff(self.target);
+        spell.manaCost(self);
+        spell.setCooldown(self);
+        break;
+      case 'debuff':
+        spell.setDebuff(self.target);
+        spell.manaCost(self);
+        spell.setCooldown(self);
+        break;
+      case 'summon':
+        spell.setSummon(self.target);
+        spell.manaCost(self);
+        spell.setCooldown(self);
+        break;
+      default:
+        console.log('Spell type is undefined');
+        break;
+    }
+
+    manaUpdate(self);
+
+    $("#infolog").prepend("<p>You cast: " + spell.name + "! / Type: "+spell.type+" / Damage: "+spell.damage+" / Manacost: "+spell.manacost);
+    self.reset();
+  }
+}
+
+
+
+Player.prototype.put_in_combo = Player.prototype.put_in_combo || function (object){
+  var self = this;
+  self.targetComboSpell = {};
   var i = 0;
   // while (i != 3) {
   while (i != 2) {
-    if(!combo[i]){
+    if(!self.combo[i]){
       $("#"+i+"_spell").addClass(object.icon_class);
-      combo[i] = object;
-      var comboIds = $.map(combo, function(n,i){
+      self.combo[i] = object;
+      var comboIds = $.map(self.combo, function(n,i){
         return n.id;
       })
 
-      console.log(comboIds);
+      // console.log(comboIds);
 
       var sort_comboIds = comboIds.sort();
       var numberOfSpells = 0;
       var bothSpells = 0;
 
-      if(previous_spell.icon_class){
-        $("#spell_to_cast").removeClass(previous_spell.icon_class);
-        $("#spell_name").text("");
-        $("#spell_type").text("");
-        $("#spell_type").attr("class", "");
-        $("#spell_damage").text("");
-        $("#spell_manacost").text("");
+      if(self.previous_spell.type){
+        $("#spell_to_cast").removeClass(self.previous_spell.icon_class);
+        resetSpellText();
       }
 
-      spellTree.forEach(function (spell) {
+      spellBook.forEach(function (spell) {
         bothSpells = 0;
         numberOfSpells = spell.combo.length > sort_comboIds.length ? spell.combo.length : sort_comboIds.length;
         for (var i = 0; i < numberOfSpells; i++){
@@ -394,41 +170,44 @@ function put_in_combo (object){
           }
         }
         if(numberOfSpells == bothSpells){
-          targetComboSpell = spell;
-          if(previous_spell.icon_class){
-            $("#spell_to_cast").removeClass(previous_spell.icon_class);
+          self.targetComboSpell = spell;
+          if(self.previous_spell.icon_class){
+            $("#spell_to_cast").removeClass(self.previous_spell.icon_class);
           }
-          if(targetComboSpell.icon_class){
-            $("#spell_to_cast").addClass(targetComboSpell.icon_class);
-            $("#spell_name").text("Name: "+targetComboSpell.name);
-            $("#spell_type").text("Type: "+targetComboSpell.type);
-            $("#spell_type").addClass(targetComboSpell.type);
-            $("#spell_damage").text("Damage: "+targetComboSpell.damage);
-            $("#spell_manacost").text("Manacost: "+targetComboSpell.manacost);
+          if(self.targetComboSpell.icon_class){
+            $("#spell_to_cast").addClass(self.targetComboSpell.icon_class);
+            if(self.spells[spell.name] == true){
+              $("#spell_to_cast").addClass('cooldown');
+            }else{
+              $("#spell_to_cast").removeClass('cooldown');
+            }
+            drawSpellText(self.targetComboSpell);
           }
-          previous_spell = targetComboSpell;
-          console.log(targetComboSpell);
+          self.previous_spell = self.targetComboSpell;
+
+          // console.log(self.targetComboSpell);
+
         }
       });
 
       break;
     }
-    if(combo[1]){
-      $("#0_spell").removeClass(combo[0].icon_class);
-      $("#1_spell").removeClass(combo[1].icon_class);
+    if(self.combo[1]){
+      $("#0_spell").removeClass(self.combo[0].icon_class);
+      $("#1_spell").removeClass(self.combo[1].icon_class);
       // $("#2_spell").removeClass(combo[2].icon_class);
 
-      $("#0_spell").addClass(combo[1].icon_class);
+      $("#0_spell").addClass(self.combo[1].icon_class);
       $("#1_spell").addClass(object.icon_class);
       // $("#1_spell").addClass(combo[2].icon_class);
       // $("#2_spell").addClass(object.icon_class);
 
-      combo[0] = combo[1];
-      combo[1] = object;
+      self.combo[0] = self.combo[1];
+      self.combo[1] = object;
       // combo[1] = combo[2];
       // combo[2] = object;
 
-      var comboIds = $.map(combo, function(n,i){
+      var comboIds = $.map(self.combo, function(n,i){
         return n.id;
       })
 
@@ -437,16 +216,12 @@ function put_in_combo (object){
       var numberOfSpells = 0;
       var bothSpells = 0;
 
-      if(previous_spell.icon_class){
-        $("#spell_to_cast").removeClass(previous_spell.icon_class);
-        $("#spell_name").text("");
-        $("#spell_type").text("");
-        $("#spell_type").attr("class", "");
-        $("#spell_damage").text("");
-        $("#spell_manacost").text("");
+      if(self.previous_spell.icon_class){
+        $("#spell_to_cast").removeClass(self.previous_spell.icon_class);
+        resetSpellText();
       }
 
-      spellTree.forEach(function (spell) {
+      spellBook.forEach(function (spell) {
         bothSpells = 0;
         numberOfSpells = spell.combo.length > sort_comboIds.length ? spell.combo.length : sort_comboIds.length;
         for (var i = 0; i < numberOfSpells; i++){
@@ -455,24 +230,25 @@ function put_in_combo (object){
           }
         }
         if(numberOfSpells == bothSpells){
-          targetComboSpell = spell;
-          if(previous_spell.icon_class){
-            $("#spell_to_cast").removeClass(previous_spell.icon_class);
+          self.targetComboSpell = spell;
+          if(self.previous_spell.icon_class){
+            $("#spell_to_cast").removeClass(self.previous_spell.icon_class);
           }
-          if(targetComboSpell.icon_class){
-            $("#spell_to_cast").addClass(targetComboSpell.icon_class);
-            $("#spell_name").text("Name: "+targetComboSpell.name);
-            $("#spell_type").text("Type: "+targetComboSpell.type);
-            $("#spell_type").addClass(targetComboSpell.type);
-            $("#spell_damage").text("Damage: "+targetComboSpell.damage);
-            $("#spell_manacost").text("Manacost: "+targetComboSpell.manacost);
+          if(self.targetComboSpell.icon_class){
+            $("#spell_to_cast").addClass(self.targetComboSpell.icon_class);
+            if(self.spells[spell.name] == true){
+              $("#spell_to_cast").addClass('cooldown');
+            }else{
+              $("#spell_to_cast").removeClass('cooldown');
+            }
+            drawSpellText(self.targetComboSpell);
           }
 
-          previous_spell = targetComboSpell;
+          self.previous_spell = self.targetComboSpell;
         }
       });
 
-      console.log(targetComboSpell);
+      // console.log(self.targetComboSpell);
 
       break;
     }
@@ -482,468 +258,36 @@ function put_in_combo (object){
   // if(combo[2]){
   //   console.log(combo[0].nameplayer+" # "+combo[1].nameplayer+" # "+combo[2].nameplayer);
   // }
-  if(combo[1]){
-    console.log(combo[0].nameplayer+" # "+combo[1].nameplayer);
-  }
+  // if(self.combo[1]){
+  //   console.log(self.combo[0].nameplayer+" # "+self.combo[1].nameplayer);
+  // }
 }
 
-var spellobject;
 
 
-function updatespells(){
-
- spellobject = {
-
-    icebolt: {
-      id: 1,
-      nameplayer: "Icebolt",
-      // namefunction: "icebolt",
-      icon_class: "-ice-6",
-      // damage: Math.floor(Damage/2 + IceDMG + MagicPow/2) ,
-      // manacost: boss.level * 15,
-      // healthcost: 0,
-      // manarestore: 0,
-      // healthrestore: 0,
-      // repeat: 0,
-      // delay: 0,
-      // buffname: 0,
-      // buffamount: 0,
-      // cooldown: 5000,
-    },
-
-    firebolt: {
-      id: 2,
-      nameplayer: "Firebolt",
-      // namefunction: "firebolt",
-      icon_class: "-fire-3",
-      // damage: Math.floor(Damage/2 + FireDMG + MagicPow/2) ,
-      // manacost: boss.level * 15,
-      // healthcost: 0,
-      // manarestore: 0,
-      // healthrestore: 0,
-      // repeat: 0,
-      // delay: 0,
-      // buffname: 0,
-      // buffamount: 0,
-      // cooldown: 5000,
-    },
-
-
-    stormbolt: {
-      id: 3,
-      nameplayer: "Stormbolt",
-      // namefunction: "stormbolt",
-      icon_class: "-lightning-2",
-      // damage: Math.floor(Damage/2 + StormDMG + MagicPow/2) ,
-      // manacost: boss.level * 15,
-      // healthcost: 0,
-      // manarestore: 0,
-      // healthrestore: 0,
-      // repeat: 0,
-      // delay: 0,
-      // buffname: 0,
-      // buffamount: 0,
-      // cooldown: 5000,
-    },
-
-    thorns: {
-      id: 4,
-      nameplayer: "Thorns",
-      // namefunction: "thorns",
-      icon_class: "-nature-4",
-      // damage: Math.floor(Damage/6 + NatureDMG/3 + MagicPow/6) ,
-      // manacost: boss.level * 4,
-      // healthcost: 0,
-      // manarestore: 0,
-      // healthrestore: 0,
-      // repeat: 3,
-      // delay: 1000,
-      // buffname: 0,
-      // buffamount: 0,
-      // cooldown: 5000,
-    },
-
-    shadowbolt: {
-      id: 5,
-      nameplayer: "Shadowbolt",
-      // namefunction: "shadowbolt",
-      icon_class: "-shadow-1",
-      // damage: Math.floor(Damage/2 + ShadowDMG + MagicPow/2) ,
-      // manacost: boss.level * 15,
-      // healthcost: 0,
-      // manarestore: 0,
-      // healthrestore: 0,
-      // repeat: 0,
-      // delay: 2000,
-      // buffname: 0,
-      // buffamount: 0,
-      // cooldown: 5000,
-    },
-
-
-    bloodstrike: {
-      id: 6,
-      nameplayer: "Bloodstrike",
-      // namefunction: "bloodstrike",
-      icon_class: "-blood-2",
-      // damage: Math.floor(BloodDMG + Damage),
-      // manacost: boss.level * 5,
-      // healthcost: boss.level * 30,
-      // manarestore: 0,
-      // healthrestore: 0,
-      // repeat: 0,
-      // delay: 0,
-      // buffname: "buffLifesteal",
-      // buffamount: Math.floor(BloodDMG / 2),
-      // cooldown: 5000,
-    },
-
-
-    basicattack: {
-      id: 7,
-      nameplayer: "Attack",
-      // namefunction: "basicattack",
-      icon_class: "-basic",
-      // damage: Damage,
-      // manacost: 0,
-      // healthcost: 0,
-      // manarestore: Math.floor(Mana/10),
-      // healthrestore: Math.floor(Lifesteal/4),
-      // repeat: 0,
-      // delay: 0,
-      // buffname: 0,
-      // buffamount: 0,
-      // cooldown: 2000,
-    },
-
-
-    shield: {
-      id: 8,
-      nameplayer: "Shield",
-      icon_class: "-defend-3",
-      // namefunction: "shield",
-      // nameid: "#shield",
-      // damage: 0,
-      // manacost: boss.level * 15,
-      // healthcost: 0,
-      // manarestore: 0,
-      // healthrestore: 0,
-      // repeat: 0,
-      // delay: 0,
-      // buffname: "buffDodge",
-      // buffamount: 100,
-      // cooldown: 10000,
-      // buffduration: 5000,
-    },
-
-    // heal: {
-    //   id: 9,
-    //   nameplayer: "Heal",
-    //   // namefunction: "heal",
-    //   icon_class: "-heal-2",
-    //   // damage: 0,
-    //   // manacost: boss.level * 4,
-    //   // healthcost: 0,
-    //   // manarestore: 0,
-    //   // healthrestore: HealPow*2,
-    //   // repeat: 0,
-    //   // delay: 0,
-    //   // buffname: 0,
-    //   // buffamount: 0,
-    //   // cooldown: 10000,
-    // },
-
-    // natureheal: {
-    //   nameplayer: "Natureheal",
-    //   namefunction: "natureheal",
-    //   nameid: "#natureheal",
-    //   damage: 0,
-    //   manacost: boss.level * 5,
-    //   healthcost: 0,
-    //   manarestore: 0,
-    //   healthrestore: Math.floor(NatureDMG/4),
-    //   repeat: 3,
-    //   delay: 1000,
-    //   buffname: "buffNatureDMG",
-    //   buffamount: Math.floor(NatureDMG),
-    //   buffduration: 5000,
-    //   cooldown: 10000,
-    // },
-
-
-    // manarestore: {
-    //   nameplayer: "Manarestore",
-    //   namefunction: "manarestore",
-    //   nameid: "#manarestore",
-    //   damage: 0,
-    //   manacost: 0,
-    //   healthcost: 0,
-    //   manarestore:  Math.floor(MagicPow/2),
-    //   healthrestore:0,
-    //   repeat: 0,
-    //   delay: 0,
-    //   buffname: 0,
-    //   buffamount: 0,
-    //   cooldown: 10000,
-    // },
-
-    // lotus: {
-    //   nameplayer: "Lotus",
-    //   namefunction: "lotus",
-    //   nameid: "#lotus",
-    //   damage: 0,
-    //   manacost: 0,
-    //   healthcost: 0,
-    //   manarestore:  Math.floor(MagicPow/2),
-    //   healthrestore:0,
-    //   repeat: 5,
-    //   delay: 1000,
-    //   buffname: 0,
-    //   buffamount: 0,
-    //   cooldown: 0,
-    // },
-
-    // buffmagic: {
-    //   nameplayer: "Magic Bottle",
-    //   namefunction: "buffmagic",
-    //   nameid: "#buffmagic",
-    //   damage: 0,
-    //   manacost: boss.level * 25,
-    //   healthcost: 0,
-    //   manarestore: 0,
-    //   healthrestore: 0,
-    //   repeat: 0,
-    //   delay: 0,
-    //   buffname: "buffMagicPow",
-    //   buffamount: Math.floor(MagicPow/2),
-    //   cooldown: 10000,
-    //   buffduration: 5000,
-    // },
-
-    // icebuff: {
-    //   nameplayer: "Ice Mask",
-    //   namefunction: "icebuff",
-    //   nameid: "#icebuff",
-    //   damage:  Math.floor(IceDMG / 2),
-    //   manacost: boss.level * 10,
-    //   healthcost: 0,
-    //   manarestore: 0,
-    //   healthrestore: 0,
-    //   repeat: 0,
-    //   delay: 0,
-    //   buffname: "buffIceDMG",
-    //   buffamount: Math.floor(IceDMG),
-    //   cooldown: 10000,
-    //   buffduration: 5000,
-    // },
-
-    // firebuff: {
-    //   nameplayer: "Hand of Fire",
-    //   namefunction: "firebuff",
-    //   nameid: "#firebuff",
-    //   damage:  Math.floor(FireDMG / 2),
-    //   manacost: boss.level * 10,
-    //   healthcost: 0,
-    //   manarestore: 0,
-    //   healthrestore: 0,
-    //   repeat: 0,
-    //   delay: 0,
-    //   buffname: "buffFireDMG",
-    //   buffamount: Math.floor(FireDMG),
-    //   cooldown: 10000,
-    //   buffduration: 5000,
-    // },
-
-    // shadowbuff: {
-    //   nameplayer: "Eye of Shadow",
-    //   namefunction: "shadowbuff",
-    //   nameid: "#shadowbuff",
-    //   damage:  Math.floor(ShadowDMG / 2),
-    //   manacost: boss.level * 10,
-    //   healthcost: 0,
-    //   manarestore: 0,
-    //   healthrestore: 0,
-    //   repeat: 0,
-    //   delay: 0,
-    //   buffname: "buffShadowDMG",
-    //   buffamount: Math.floor(ShadowDMG),
-    //   cooldown: 10000,
-    //   buffduration: 5000,
-    // },
-
-    // stormbuff: {
-    //   nameplayer: "Tree of Storm",
-    //   namefunction: "stormbuff",
-    //   nameid: "#stormbuff",
-    //   damage: Math.floor(StormDMG/2),
-    //   manacost: boss.level * 10,
-    //   healthcost: 0,
-    //   manarestore: 0,
-    //   healthrestore: 0,
-    //   repeat: 0,
-    //   delay: 0,
-    //   buffname: "buffStormDMG",
-    //   buffamount: Math.floor(StormDMG ),
-    //   cooldown: 10000,
-    //   buffduration: 5000,
-    // },
-
-    // magebuff: {
-    //   nameplayer: "Mage Burst",
-    //   namefunction: "magebuff",
-    //   nameid: "#magebuff",
-    //   damage: Math.floor(MagicPow /2),
-    //   manacost: Math.floor(currentplayermana / 2),
-    //   healthcost: 0,
-    //   manarestore: 0,
-    //   healthrestore: 0,
-    //   repeat: 0,
-    //   delay: 0,
-    //   buffname: "buffMagicPow",
-    //   buffamount: Math.floor(MagicPow /2),
-    //   cooldown: 10000,
-    //   buffduration: 10000,
-    // },
-
-    // bloodsap: {
-    //   nameplayer: "Blood Sap",
-    //   namefunction: "bloodsap",
-    //   nameid: "#bloodsap",
-    //   damage: Math.floor(BloodDMG/3),
-    //   manacost: 0,
-    //   healthcost: Math.floor(Health / 4),
-    //   manarestore: 0,
-    //   healthrestore: Math.floor(BloodDMG/3),
-    //   repeat: 3,
-    //   delay: 1000,
-    //   buffname: "buffBloodDMG",
-    //   buffamount: Math.floor(BloodDMG ),
-    //   cooldown: 10000,
-    //   buffduration: 5000,
-    // },
-
-    // healwings: {
-    //   nameplayer: "Heal Wings",
-    //   namefunction: "healwings",
-    //   nameid: "#healwings",
-    //   damage: 0,
-    //   manacost: Math.floor(Mana / 10),
-    //   healthcost: 0,
-    //   manarestore: 0,
-    //   healthrestore: HealPow,
-    //   repeat: 5,
-    //   delay: 800,
-    //   buffname: 0,
-    //   buffamount: 0,
-    //   cooldown: 10000,
-    // },
-
-    // defenseheal: {
-    //   nameplayer: "Palace of Gods",
-    //   namefunction: "defenseheal",
-    //   nameid: "#defenseheal",
-    //   damage: 0,
-    //   manacost: boss.level*7,
-    //   healthcost: 0,
-    //   manarestore: 0,
-    //   healthrestore: Math.floor(HealPow/2),
-    //   repeat: 3,
-    //   delay: 1000,
-    //   buffname: "buffDodge",
-    //   buffamount: 30,
-    //   buffduration: 4000,
-    //   cooldown: 10000,
-    // },
-
-    // attackbuff: {
-    //   nameplayer: "Damage Buff",
-    //   namefunction: "attackbuff",
-    //   nameid: "#attackbuff",
-    //   damage: 0,
-    //   manacost: boss.level * 15,
-    //   healthcost: 0,
-    //   manarestore: 0,
-    //   healthrestore: 0,
-    //   repeat: 0,
-    //   delay: 0,
-    //   buffname: "buffDamage",
-    //   buffamount: Math.floor(Damage),
-    //   cooldown: 10000,
-    //   buffduration: 10000,
-    // },
-
-    // helmet: {
-    //   nameplayer: "Vigor Of Vikings",
-    //   namefunction: "helmet",
-    //   nameid: "#helmet",
-    //   damage: 0,
-    //   manacost: boss.level * 15,
-    //   healthcost: 0,
-    //   manarestore: 0,
-    //   healthrestore: 0,
-    //   repeat: 0,
-    //   delay: 0,
-    //   buffname: "buffHealth",
-    //   buffamount: Math.floor(Mana / 2),
-    //   cooldown: 10000,
-    //   buffduration: 15000,
-    // },
-
-    // magicattack: {
-    //   nameplayer: "Finger Bolt",
-    //   namefunction: "magicattack",
-    //   nameid: "#magicattack",
-    //   damage: MagicPow,
-    //   manacost: boss.level * 10,
-    //   healthcost: 0,
-    //   manarestore: 0,
-    //   healthrestore: 0,
-    //   repeat: 0,
-    //   delay: 0,
-    //   buffname: 0,
-    //   buffamount: 0,
-    //   cooldown: 7000,
-    //   buffduration: 0,
-    // },
-
-
-  }
-
-
+Player.prototype.reset = Player.prototype.reset || function (){
+  var self = this;
+  if(self.combo[0])$("#0_spell").removeClass(self.combo[0].icon_class);
+  if(self.combo[1])$("#1_spell").removeClass(self.combo[1].icon_class);
+  // if(combo[2])$("#2_spell").removeClass(combo[2].icon_class);
+  $("#spell_to_cast").removeClass(self.targetComboSpell.icon_class);
+  self.targetComboSpell = {};
+  self.combo = [];
+  resetSpellText();
 }
 
-updatespells();
 
+$(".spell1").click(function(){window.player.put_in_combo(spellobject.icebolt);});
+$(".spell2").click(function(){window.player.put_in_combo(spellobject.firebolt);});
+$(".spell3").click(function(){window.player.put_in_combo(spellobject.stormbolt);});
+$(".spell4").click(function(){window.player.put_in_combo(spellobject.thorns);});
+$(".spell5").click(function(){window.player.put_in_combo(spellobject.shadowbolt);});
+$(".spell6").click(function(){window.player.put_in_combo(spellobject.bloodstrike);});
+$(".spell7").click(function(){window.player.put_in_combo(spellobject.basicattack);});
+$(".spell8").click(function(){window.player.put_in_combo(spellobject.shield);});
 
-$(".spell1").click(function(){put_in_combo(spellobject.icebolt);});
-$(".spell2").click(function(){put_in_combo(spellobject.firebolt);});
-$(".spell3").click(function(){put_in_combo(spellobject.stormbolt);});
-$(".spell4").click(function(){put_in_combo(spellobject.thorns);});
-$(".spell5").click(function(){put_in_combo(spellobject.shadowbolt);});
-$(".spell6").click(function(){put_in_combo(spellobject.bloodstrike);});
-$(".spell7").click(function(){put_in_combo(spellobject.basicattack);});
-$(".spell8").click(function(){put_in_combo(spellobject.shield);});
+$("#spell_to_cast").click(function(){window.player.castSpell(window.player.targetComboSpell);});
 
-$("#spell_to_cast").click(function(){playerattack(targetComboSpell);});
-
-
-// $("#shadowbuff").click(function(){playerattack(spellobject.shadowbuff);});
-// $("#stormbuff").click(function(){playerattack(spellobject.stormbuff);});
-// $("#firebuff").click(function(){playerattack(spellobject.firebuff);});
-// $("#icebuff").click(function(){playerattack(spellobject.icebuff);});
-
-// $("#icebolt").click(function(){playerattack(spellobject.icebolt);});
-// $("#firebolt").click(function(){playerattack(spellobject.firebolt);});
-// $("#stormbolt").click(function(){playerattack(spellobject.stormbolt);});
-// $("#thorns").click(function(){playerattack(spellobject.thorns);});
-// $("#shadowbolt").click(function(){playerattack(spellobject.shadowbolt);});
-// $("#heal").click(function(){playerattack(spellobject.heal);});
-// $("#natureheal").click(function(){playerattack(spellobject.natureheal);});
-// $("#manarestore").click(function(){playerattack(spellobject.manarestore);});
-// $("#bloodstrike").click(function(){playerattack(spellobject.bloodstrike);});
-// $("#shield").click(function(){playerattack(spellobject.shield);});
-// $("#buffmagic").click(function(){playerattack(spellobject.buffmagic);});
-// $(".-basic").click(function(){playerattack(spellobject.basicattack);});
 
 
 // keyboard spell clicking support! Woo :D
@@ -960,19 +304,8 @@ $('body').bind('keypress',function (event){
 
   if (event.keyCode === 32){$("#spell_to_cast").trigger('click');}
 
-  if (event.keyCode === 0){reset();}
+  if (event.keyCode === 0){window.player.reset();}
 
-  // if (event.keyCode === 57){$(".spell9").trigger('click');}
-
-  // if (event.charCode === 113){$(".spell1").trigger('click');}
-  // if (event.charCode === 119){$(".spell2").trigger('click');}
-  // if (event.charCode === 101){$(".spell3").trigger('click');}
-  // if (event.charCode === 114){$(".spell4").trigger('click');}
-  // if (event.charCode === 97){$(".spell5").trigger('click');}
-  // if (event.charCode === 115){$(".spell6").trigger('click');}
-  // if (event.charCode === 100){$(".spell7").trigger('click');}
-  // if (event.charCode === 102){$(".spell8").trigger('click');}
-  // if (event.charCode === 57){$(".spell9").trigger('click');}
 
 });
 
@@ -988,5 +321,293 @@ $('body').keyup(function (){
 });
 
 
+
+
+
+function Summon(spell){
+  this.name = spell.summon.name;
+  this.hp = spell.summon.hp;
+  this.attack = spell.summon.attack;
+  this.attackDelay = spell.summon.attackDelay;
+  this.target = window.player;
+  this.number = spell.summon.number;
+  this.makeDamage = function(){
+    this.target.hp -= this.attack * this.number;
+    this.hp -= this.attack * this.number;
+    hpUpdate(this.target);
+  }
+}
+
+
+var spell_methods = {
+
+  setCooldown: function(player){
+    player.spells[this.name] = true;
+    var self = this;
+    setTimeout(function(){self.resetCooldown(player);}, self.cooldown);
+  },
+
+  resetCooldown: function(player){
+    player.spells[this.name] = false;
+  },
+
+  manaCost: function(player){
+    player.mana -= this.manacost;
+  },
+
+  makeDamage: function(target){
+    target.hp -= this.value;
+    hpUpdate(target);
+  },
+
+  makeHeal: function(target){
+    target.hp += this.value;
+    hpUpdate(target);
+  },
+
+  setBuff: function(player){
+    var self = this;
+    player.buffs[this.buff.name] = {
+      name: this.buff.name,
+    };
+    var i = 0;
+    var buffInterval = setInterval(function(){
+      self.makeHeal(player);
+      i++;
+      if(i == self.buff.buffrepeat){
+        self.removeBuff(player);
+        clearInterval(buffInterval);
+      }
+    }, self.buff.buffdelay);
+  },
+
+  removeBuff: function(player){
+    var self = this;
+    delete player.buffs[self.buff.name];
+  },
+
+  setDebuff: function(player){
+    var self = this;
+    player.debuffs[self.debuff.name] = {
+      name: self.debuff.name,
+    };
+    var i = 0;
+    var debuffInterval = setInterval(function(){
+      self.makeDamage(player);
+      i++;
+      if(i == self.debuff.debuffrepeat){
+        self.removeDebuff(player);
+        clearInterval(debuffInterval);
+      }
+    }, self.debuff.debuffdelay);
+  },
+
+  removeDebuff: function(player){
+    var self = this;
+    delete player.debuffs[self.debuff.name];
+  },
+
+  setSummon: function(player){
+    var self = this;
+    player.summons[self.summon.name] = new Summon(self);
+    var summonInterval = setInterval(function(){
+      if(player.summons[self.summon.name].hp <= 0){
+        self.removeSummon(player);
+        clearInterval(summonInterval);
+      }else{
+        player.summons[self.summon.name].makeDamage();
+      }
+    }, player.summons[self.summon.name].attackDelay);
+  },
+
+  removeSummon: function(player){
+    var self = this;
+    delete player.summons[self.summon.name];
+  },
+
+}
+
+
+
+
+//var spellBook = [
+window.spellBook = [
+
+  {
+    name: 'Simple Ice',
+    icon_class: '-ice-6',
+    combo: [1],
+    value: 15 ,
+    manacost: 25,
+    type: 'summon',
+    school: 'ice',
+    cooldown: 10000,
+    summon: {
+      name: 'Ice Wisp',
+      hp: '20',
+      attack: 5,
+      attackDelay: 5000,
+      number: 1,
+    },
+  },
+  {
+    name: 'Simple Fire',
+    icon_class: '-fire-3',
+    combo: [2],
+    value: 20 ,
+    manacost: 30,
+    school: 'fire',
+    type: 'damage',
+    cooldown: 10000,
+  },
+  {
+    name: 'Simple Storm',
+    icon_class: '-lightning-2',
+    combo: [3],
+    value: 10 ,
+    manacost: 10,
+    school: 'storm',
+    type: 'damage',
+    cooldown: 10000,
+  },
+  {
+    name: 'Simple Nature',
+    icon_class: '-nature-4',
+    combo: [4],
+    value: 10 ,
+    manacost: 10,
+    school: 'nature',
+    heal: 10,
+    type: 'buff',
+    cooldown: 10000,
+    buff: {
+      name: 'Heal',
+      buffdelay: 5000,
+      buffrepeat: 5,
+    },
+  },
+  {
+    name: 'Simple Cabal',
+    icon_class: '-shadow-1',
+    combo: [5],
+    value: 5 ,
+    manacost: 10,
+    school: 'shadow',
+    type: 'debuff',
+    debuff: {
+      name: 'Pain',
+      debuffdelay: 5000,
+      debuffrepeat: 5,    
+    },
+    cooldown: 10000,
+  },
+  {
+    name: 'Simple Blood',
+    icon_class: '-blood-2',
+    combo: [6],
+    value: 10 ,
+    manacost: 10,
+    school: 'blood',
+    type: 'buff',
+    buff: {
+      name: 'Haste',
+      buffdelay: 5000,
+      buffrepeat: 5,
+      value: 5,   
+    },
+    cooldown: 10000,
+  },
+  {
+    name: 'Simple Attack',
+    icon_class: '-basic',
+    combo: [7],
+    value: 5,
+    manacost: 0,
+    school: 'physical',
+    type: 'damage',
+    cooldown: 10000,
+  },
+  {
+    name: 'Simple Defend',
+    icon_class: '-defend-3',
+    combo: [8],
+    value: 10 ,
+    manacost: 10,
+    school: 'dodge',
+    type: 'damage',
+    cooldown: 10000,
+  },
+
+];
+
+spellBook.forEach(function (spell) {
+  $.extend(spell, spell_methods);
+});
+
+
+
+var spellobject = {
+
+    icebolt: {
+      id: 1,
+      letter: 'I',
+      nameplayer: "Icebolt",
+      icon_class: "-ice-6",
+    },
+
+    firebolt: {
+      id: 2,
+      letter: 'F',
+      nameplayer: "Firebolt",
+      icon_class: "-fire-3",
+    },
+
+
+    stormbolt: {
+      id: 3,
+      letter: 'S',
+      nameplayer: "Stormbolt",
+      icon_class: "-lightning-2",
+    },
+
+    thorns: {
+      id: 4,
+      letter: 'N',
+      nameplayer: "Thorns",
+      icon_class: "-nature-4",
+    },
+
+    shadowbolt: {
+      id: 5,
+      letter: 'C',
+      nameplayer: "Shadowbolt",
+      icon_class: "-shadow-1",
+    },
+
+
+    bloodstrike: {
+      id: 6,
+      letter: 'B',
+      nameplayer: "Bloodstrike",
+      icon_class: "-blood-2",
+    },
+
+
+    basicattack: {
+      id: 7,
+      letter: 'W',
+      nameplayer: "Attack",
+      icon_class: "-basic",
+    },
+
+
+    shield: {
+      id: 8,
+      letter: 'D',
+      nameplayer: "Shield",
+      icon_class: "-defend-3",
+    },
+
+  }
 
 }); // doc rdy
