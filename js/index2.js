@@ -36,11 +36,30 @@ function manaUpdate(player){
 }
 
 function updateBuffsScreen(player){
-
+  $("#player_buffs").html("");
+  for (var buff in player.buffs){
+    $("#player_buffs").append("<div class='buffslot "+ player.buffs[buff].name +"'></div>")
+  }
 }
 
 function updateSummonsScreen(player){
-
+  $("#player_battlecell_1").html("");
+  $("#player_battlecell_2").html("");
+  $("#player_battlecell_3").html("");
+  var i = 1;
+  for (var summon in player.summons){
+    if(Object.keys(player.summons).length == 1){
+      $("#player_battlecell_2").append("<div class='summon'><div class='summon_img'><div class='summonhpbar'>"+ player.summons[summon].hp + " / " + player.summons[summon].total_hp+"</div><img class='mobsprites boss9'></div></div>");
+    }else{
+      if(i < 4){
+        $("#player_battlecell_"+i).append("<div class='summon><div class='summon_img'><div class='summonhpbar'>"+ player.summons[summon].hp + " / " + player.summons[summon].total_hp+"</div><img class='mobsprites boss9'></div>");
+        i++;
+      }else{
+        $("#spell_status").attr('style', '');
+        $("#spell_status").text("Not enough place for minions!").delay(500).fadeOut(1500);
+      }
+    }
+  }
 }
 
 
@@ -326,6 +345,7 @@ $('body').keyup(function (){
 
 function Summon(spell){
   this.name = spell.summon.name;
+  this.total_hp = spell.summon.total_hp;
   this.hp = spell.summon.hp;
   this.attack = spell.summon.attack;
   this.attackDelay = spell.summon.attackDelay;
@@ -370,6 +390,7 @@ var spell_methods = {
     player.buffs[this.buff.name] = {
       name: this.buff.name,
     };
+    updateBuffsScreen(player);
     var i = 0;
     var buffInterval = setInterval(function(){
       self.makeHeal(player);
@@ -384,6 +405,7 @@ var spell_methods = {
   removeBuff: function(player){
     var self = this;
     delete player.buffs[self.buff.name];
+    updateBuffsScreen(player);
   },
 
   setDebuff: function(player){
@@ -391,6 +413,7 @@ var spell_methods = {
     player.debuffs[self.debuff.name] = {
       name: self.debuff.name,
     };
+    updateBuffsScreen(player);
     var i = 0;
     var debuffInterval = setInterval(function(){
       self.makeDamage(player);
@@ -405,11 +428,13 @@ var spell_methods = {
   removeDebuff: function(player){
     var self = this;
     delete player.debuffs[self.debuff.name];
+    updateBuffsScreen(player);
   },
 
   setSummon: function(player){
     var self = this;
     player.summons[self.summon.name] = new Summon(self);
+    updateSummonsScreen(player);
     var summonInterval = setInterval(function(){
       if(player.summons[self.summon.name].hp <= 0){
         self.removeSummon(player);
@@ -423,6 +448,7 @@ var spell_methods = {
   removeSummon: function(player){
     var self = this;
     delete player.summons[self.summon.name];
+    updateSummonsScreen(player);
   },
 
 }
@@ -444,7 +470,8 @@ window.spellBook = [
     cooldown: 10000,
     summon: {
       name: 'Ice Wisp',
-      hp: '20',
+      total_hp: 20,
+      hp: 20,
       attack: 5,
       attackDelay: 5000,
       number: 1,
@@ -459,6 +486,12 @@ window.spellBook = [
     school: 'fire',
     type: 'damage',
     cooldown: 10000,
+    buff: {
+      name: 'burn',
+      buffdelay: 5000,
+      buffrepeat: 5,
+      value: 2,   
+    },
   },
   {
     name: 'Simple Storm',
@@ -481,7 +514,7 @@ window.spellBook = [
     type: 'buff',
     cooldown: 10000,
     buff: {
-      name: 'Heal',
+      name: 'heal',
       buffdelay: 5000,
       buffrepeat: 5,
     },
@@ -510,7 +543,7 @@ window.spellBook = [
     school: 'blood',
     type: 'buff',
     buff: {
-      name: 'Haste',
+      name: 'haste',
       buffdelay: 5000,
       buffrepeat: 5,
       value: 5,   
